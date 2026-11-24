@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#00286a">
+  <title>Privacidad · La Purísima</title>
+  <style>
+    :root { color-scheme: light; --blue: #00286a; --paper: #faf8ff; --ink: #1a1b21; --muted: #434652; --line: #c4c6d3; }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--paper); color: var(--ink); font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.6; }
+    header { background: var(--blue); color: #fff; padding: 32px 16px 28px; }
+    header div, main { width: min(100% - 32px, 680px); margin: 0 auto; }
+    .brand { margin: 0 0 8px; color: #f4d980; font-size: .78rem; font-weight: 700; letter-spacing: .13em; }
+    h1 { margin: 0; font-size: clamp(1.6rem, 6vw, 2.1rem); line-height: 1.15; }
+    .updated { margin: 10px 0 0; color: #d6defa; font-size: .9rem; }
+    main { padding: 24px 0 48px; }
+    h2 { margin: 32px 0 8px; color: var(--blue); font-size: 1.15rem; }
+    ul { padding-left: 1.2rem; }
+    li { margin: 6px 0; }
+    a { color: var(--blue); }
+    .note { border-left: 3px solid var(--blue); background: #eef0ff; padding: 12px 16px; border-radius: 0 12px 12px 0; }
+    footer { border-top: 1px solid var(--line); color: var(--muted); font-size: .9rem; padding-top: 16px; margin-top: 40px; }
+  </style>
+</head>
+<body>
+  <header>
+    <div>
+      <p class="brand">LA PURÍSIMA · NICARAGUA</p>
+      <h1>Política de privacidad</h1>
+      <p class="updated">Última actualización: 24 de noviembre de 2026</p>
+    </div>
+  </header>
+  <main>
+    <p class="note">La Purísima no pide cuenta, nombre, correo ni teléfono. Lo poco que guarda sirve para que el mapa de altares funcione y para mostrar publicidad.</p>
+
+    <h2>Quién es responsable</h2>
+    <p>La app La Purísima (<code>com.bmconsultingni.purisima.purisima</code>) la publica Everts Chavez. Para cualquier consulta sobre esta política escribe a <a href="mailto:chavez.everts@gmail.com">chavez.everts@gmail.com</a>.</p>
+
+    <h2>Qué datos se usan y para qué</h2>
+    <ul>
+      <li><strong>Altares que tú anuncias.</strong> Si publicas un altar se guarda su ubicación, el nombre que le pongas, el punto de referencia, la ciudad, la hora de inicio, lo que están dando y las notas de estado. Esa información la ve cualquier persona que use la app. Puedes elegir «Ubicación aproximada», que la guarda con unos 100 metros de margen. Los altares dejan de mostrarse a las 48 horas.</li>
+      <li><strong>Identificador anónimo.</strong> Para publicar, votar o reportar, la app inicia una sesión anónima de Firebase y calcula un código a partir del identificador de tu teléfono. Ese código se transforma con una función de un solo sentido y solo sirve para que cada teléfono vote, reporte o confirme una vez por altar. No permite saber quién eres.</li>
+      <li><strong>Ubicación de tu teléfono.</strong> Solo se pide cuando tocas «Centrar en mi ubicación» o «Usar mi ubicación». Se usa en el teléfono para mover el mapa y no se envía a ningún servidor, salvo que publiques un altar en ese punto.</li>
+      <li><strong>Publicidad.</strong> La app muestra un banner de Google AdMob al pie de la lista de cantos y del ranking de altares. AdMob puede usar el identificador de publicidad del teléfono, la dirección IP y datos técnicos del dispositivo para mostrar y medir anuncios. En el Espacio Económico Europeo y el Reino Unido la app te pide consentimiento antes, y puedes cambiarlo desde Ajustes. Más información en <a href="https://policies.google.com/technologies/partner-sites?hl=es">cómo usa Google los datos de las apps que usan sus servicios</a>.</li>
+      <li><strong>Apoyos a la app.</strong> Los aportes se pagan con Google Play. Nunca vemos los datos de tu tarjeta; Google Play solo nos indica si la compra se hizo, para quitar la publicidad en ese teléfono.</li>
+      <li><strong>Mapas y audio.</strong> Los mapas se descargan de los servidores de OpenStreetMap y los cantos de GitHub. Como cualquier descarga, esos servicios reciben la dirección IP de tu teléfono. Consulta la <a href="https://osmfoundation.org/wiki/Privacy_Policy">política de privacidad de OpenStreetMap</a> y la <a href="https://docs.github.com/es/site-policy/privacy-policies/github-general-privacy-statement">de GitHub</a>.</li>
+    </ul>
+
+    <h2>Qué se queda solo en tu teléfono</h2>
+    <p>Los cantos descargados, el tamaño de letra, el tema claro u oscuro y la página de la novena donde te quedaste. Se borran al desinstalar la app.</p>
+
+    <h2>Con quién se comparte</h2>
+    <p>Los datos de los altares se guardan en Google Firebase (Cloud Firestore), que los procesa por cuenta nuestra. La publicidad la sirve Google AdMob y los pagos los procesa Google Play. No vendemos datos a nadie.</p>
+
+    <h2>Cuánto tiempo se guardan</h2>
+    <p>Cada altar caduca a las 48 horas de publicarse; después deja de mostrarse y se elimina de los servidores. Los votos, reportes y confirmaciones forman parte del altar y se eliminan con él.</p>
+
+    <h2>Tus opciones</h2>
+    <ul>
+      <li>No publicar altares: el resto de la app funciona igual.</li>
+      <li>Negar el permiso de ubicación: puedes mover el mapa a mano.</li>
+      <li>Restablecer o eliminar el identificador de publicidad en los ajustes de Google de tu teléfono.</li>
+      <li>Pedir que se borre antes de tiempo un altar que publicaste, o cualquier otro dato, escribiendo a <a href="mailto:chavez.everts@gmail.com">chavez.everts@gmail.com</a>.</li>
+    </ul>
+
+    <h2>Menores de edad</h2>
+    <p>La app no está dirigida a menores de 13 años ni les pide datos personales.</p>
+
+    <h2>Cambios</h2>
+    <p>Si esta política cambia, la nueva versión se publicará en esta misma página con su fecha.</p>
+
+    <footer>La Purísima · <a href="https://play.google.com/store/apps/details?id=com.bmconsultingni.purisima.purisima">Google Play</a></footer>
+  </main>
+</body>
+</html>

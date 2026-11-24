@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#00286a">
+  <title>La Purísima</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="anonymous">
+  <style>
+    :root { color-scheme: light; --blue: #00286a; --blue-panel: #0f3d91; --gold: #c9971a; --paper: #faf8ff; --ink: #1a1b21; }
+    * { box-sizing: border-box; }
+    body { margin: 0; min-height: 100vh; background: var(--paper); color: var(--ink); font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+    main { width: min(100% - 32px, 560px); margin: 24px auto; }
+    .card { overflow: hidden; border: 1px solid #c4c6d3; border-radius: 24px; background: #fff; box-shadow: 0 8px 28px #00286a18; }
+    header { padding: 24px; background: var(--blue); color: #fff; }
+    .brand { margin: 0 0 10px; color: #f4d980; font-size: .78rem; font-weight: 700; letter-spacing: .13em; }
+    h1 { margin: 0; font-size: clamp(1.7rem, 7vw, 2.25rem); line-height: 1.12; }
+    #map { height: 320px; background: #e8e7ef; }
+    .actions { display: grid; gap: 12px; padding: 20px; }
+    .button { display: flex; min-height: 52px; align-items: center; justify-content: center; border: 0; border-radius: 999px; padding: 12px 18px; font: inherit; font-weight: 700; text-align: center; text-decoration: none; }
+    .primary { background: var(--blue); color: #fff; }
+    .secondary { border: 1px solid #c4c6d3; background: #fff; color: var(--blue); }
+    .leaflet-container { font: inherit; }
+    [hidden] { display: none !important; }
+  </style>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin="anonymous"></script>
+  <script defer>
+    window.addEventListener("DOMContentLoaded", () => {
+      const PACKAGE = "com.bmconsultingni.purisima.purisima";
+      const PLAY_URL = `https://play.google.com/store/apps/details?id=${PACKAGE}`;
+      const ID_PATTERN = /^[A-Za-z0-9_-]{1,64}$/;
+      const NUMBER_PATTERN = /^-?\d+(?:\.\d+)?$/;
+      const oneValue = (params, key) => {
+        const values = params.getAll(key);
+        return values.length === 1 ? values[0] : null;
+      };
+      const params = new URLSearchParams(window.location.search);
+      const id = oneValue(params, "id");
+      const latText = oneValue(params, "lat");
+      const lngText = oneValue(params, "lng");
+      const validKeys = [...params.keys()].every(key => ["id", "lat", "lng"].includes(key)) &&
+        [...params].length === 3;
+      const lat = latText !== null && NUMBER_PATTERN.test(latText) ? Number(latText) : NaN;
+      const lng = lngText !== null && NUMBER_PATTERN.test(lngText) ? Number(lngText) : NaN;
+      const valid = validKeys && id !== null && ID_PATTERN.test(id) && Number.isFinite(lat) && Number.isFinite(lng) &&
+        lat >= -90 && lat <= 90 && lng >= -180 && lng <= 180;
+      const title = document.getElementById("title");
+      const map = document.getElementById("map");
+      const openLink = document.getElementById("open-app");
+      const playLink = document.getElementById("download-app");
+      playLink.href = PLAY_URL;
+      if (!valid) {
+        title.textContent = "La Purísima";
+        openLink.hidden = true;
+        map.hidden = true;
+        return;
+      }
+      title.textContent = "Hay purísima aquí";
+      const shortLat = lat.toFixed(5);
+      const shortLng = lng.toFixed(5);
+      const fallback = encodeURIComponent(PLAY_URL);
+      openLink.href = `intent://altar?id=${encodeURIComponent(id)}&lat=${shortLat}&lng=${shortLng}` +
+        `#Intent;scheme=purisima;package=${PACKAGE};S.browser_fallback_url=${fallback};end`;
+      map.hidden = false;
+      const leafletMap = L.map(map, { scrollWheelZoom: false }).setView([lat, lng], 17);
+      L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        maxZoom: 19,
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+      }).addTo(leafletMap);
+      L.marker([lat, lng]).addTo(leafletMap);
+      requestAnimationFrame(() => leafletMap.invalidateSize());
+    });
+  </script>
+</head>
+<body>
+  <main>
+    <section class="card" aria-labelledby="title">
+      <header><p class="brand">LA PURÍSIMA · NICARAGUA</p><h1 id="title">La Purísima</h1></header>
+      <div id="map" aria-label="Mapa de OpenStreetMap" hidden></div>
+      <nav class="actions" aria-label="Opciones de la app">
+        <a id="open-app" class="button primary" href="#" hidden>Abrir en la app</a>
+        <a id="download-app" class="button secondary" href="https://play.google.com/store/apps/details?id=com.bmconsultingni.purisima.purisima">Descargar en Google Play</a>
+      </nav>
+    </section>
+  </main>
+</body>
+</html>
